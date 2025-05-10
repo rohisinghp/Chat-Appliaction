@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import useLogin from '../../Hooks/useLogin'
 
 const Login = () => {
+
+  const { login } = useLogin()
+
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    await login( username, password );
+  }
   return (
     <div className='flex flex-col justify-center min-w-96 mx-auto'>
 
@@ -10,14 +22,22 @@ const Login = () => {
           <span className='text-violet-500 font-bold'> ChatApp</span>
         </h1>
 
-        <form className='flex flex-col mt-5' action="">
+        <form 
+        onSubmit={handleSubmit}
+         className='flex flex-col mt-5' action="">
           <div className='flex flex-col'>
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" name="username" className="mt-2 p-2 bg-gray-500/80 rounded" required />
+            <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            type="text" id="username" name="username" className="mt-2 p-2 bg-gray-500/80 rounded" required />
           </div>
           <div className='flex flex-col'>
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" name="password" className="mt-2 p-2 bg-gray-500/80 rounded" required />
+            <input 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password" id="password" name="password" className="mt-2 p-2 bg-gray-500/80 rounded" required />
           </div>
           <button type="submit" className="mt-4 p-2 bg-blue-500 text-white rounded">Login</button>
         </form>

@@ -61,7 +61,7 @@ export const login = async (req, res) => {
                 return res.status(400).json({ error: "Invalid credentials" });
             }
             generateToken(existingUser._id, res);
-            return res.status(200).send("User logged in successfully");
+            return res.status(200).json({ message: "User logged in successfully" });
         }
         return res.status(400).json({ error: "User not found" });
     }

@@ -30,6 +30,7 @@ const UseSignup = () => {
                 toast.success("Signup successful!");
             } else {
                 toast.error("Signup failed. Please try again.");
+                return
             }
 
             const data = await res.json();
