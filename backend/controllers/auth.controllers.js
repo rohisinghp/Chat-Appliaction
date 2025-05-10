@@ -7,15 +7,16 @@ export const signup = async (req, res) => {
     try {
         const { fullname, username, password, confirmPassword, gender } = req.body;
 
+        // console.log({fullname, username, password, confirmPassword, gender});
 
         if (password !== confirmPassword) {
-            return res.status(400).json({ error: "Passwords do not match" });
+            return res.status(400).json({ error: "Passwords is not matching" });
         }
 
 
         const user = await User.findOne({ username });
         if (user) {
-            return res.json({ error: "User already exists" });
+            return res.status(400).json({ error: "User already exists" });
         }
 
         //HASH PASSWORD HERE
@@ -75,7 +76,7 @@ export const logout = (req, res) => {
     
     try{
         res.cookie('jwt', '', { maxAge: 0 });
-        return res.status(200).send("User logged out successfully");
+        return res.status(200).json({ message: "User logged out successfully" });
     }
     catch(error){
         console.log('error in logout controller ', error.message);
