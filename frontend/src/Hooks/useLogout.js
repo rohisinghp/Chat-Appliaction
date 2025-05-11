@@ -9,7 +9,7 @@ const useLogout = () => {
     
     const logout = async () => {
         setLoading(true)
-        try {
+        try { 
             const response = await fetch('/api/auth/logout', {
                 method: 'get',
                 headers: {

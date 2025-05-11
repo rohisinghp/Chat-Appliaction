@@ -62,13 +62,13 @@ export const getMessage = async (req, res) => {
         }).populate('messages');
         
         if (!conversation) {
-            return res.status(404).send('Conversation not found.');
+            return res.status(404).json('Conversation not found.');
         }
 
         const messages = conversation.messages;
         res.status(200).json(messages);
     }
     catch (error) {
-        res.status(500).send('An error occurred while retrieving the message.');
+        res.status(500).json('An error occurred while retrieving the message.');
     }
 }

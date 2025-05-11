@@ -8,4 +8,4 @@ const useConversationStore = create((set) =>({
     setMessages: (messages) => set({messages}),
 }))
 
-export default useConversationStore;
+export default useConversationStore; 

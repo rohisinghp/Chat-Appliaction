@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { use, useEffect } from 'react'
+import useConversationStore from '../../zustand/useConversation';
 
 const Conversation = ({ conversation, lastidx }) => {
+
+    const  {selectedConversations , setSelectedConversations}  = useConversationStore();
+
+    const isSelected = selectedConversations?._id === conversation._id;
+
+    useEffect(() => {
+
+        return (
+            () => {
+                setSelectedConversations(null);
+            } 
+        )
+    },[setSelectedConversations])
+
     return (
         <>
-            <div className='flex gap-2 items-center hover:bg-sky-500 rounded py-1 cursor-pointer p-2'>
+            <div className={`flex gap-2 items-center hover:bg-sky-500 rounded py-1 cursor-pointer p-2
+            ${isSelected ? 'bg-sky-500' : ''}`}
+                onClick={() => setSelectedConversations(conversation)}>
 
                 <div className='avatar avatar-online'>
                     <div className='w-12 rounded-full'>
