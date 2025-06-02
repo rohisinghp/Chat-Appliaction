@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import toast from 'react-hot-toast'
-import { AuthContext } from '../context/AuthContext.'
+import { AuthContext } from '../context/AuthContext'
 
 const useLogin = () => {
 

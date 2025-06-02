@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Messages from './Messages'
 import Header from './Header'
 import MessageInput from './MessageInput'
@@ -6,8 +6,13 @@ import useConversationStore from '../../zustand/useConversation'
 
 const MessageContainer = () => {
 
-  const { selectedConversations } = useConversationStore();
+  const { selectedConversations, setSelectedConversations } = useConversationStore();
 
+  useEffect(() => {
+  
+    return () => setSelectedConversations(null);
+  }, [setSelectedConversations])
+  
   return (
     <div className='flex flex-col md:min-w-[450px]'>
          {!selectedConversations ? <NoChatSelected/> : 

@@ -50,7 +50,6 @@ export const sendMessage = async (req, res) => {
 
 }
 
-
 export const getMessage = async (req, res) => {
 
     try{
@@ -60,15 +59,15 @@ export const getMessage = async (req, res) => {
         let conversation = await Conversation.findOne({
             participants: { $all: [senderId, receiverId] }
         }).populate('messages');
-        
-        if (!conversation) {
-            return res.status(404).json('Conversation not found.');
-        }
 
-        const messages = conversation.messages;
-        res.status(200).json(messages);
+        
+        if (!conversation) return res.status(200).json([]);
+
+		const messages = conversation.messages;
+        console.log('Messages:', messages);
+		res.status(200).json(messages);
     }
     catch (error) {
-        res.status(500).json('An error occurred while retrieving the message.');
+        res.status(500).json({error: 'An error occurred while retrieving the message.'});
     }
 }
