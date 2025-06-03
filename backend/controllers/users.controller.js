@@ -10,4 +10,4 @@ export const getUserForSidebar = async (req, res) => {
     catch (error) {
         res.status(500).json({ message: "Error retrieving user data", error: error.message });
     }
-};
+}; 

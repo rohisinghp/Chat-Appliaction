@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
+// import { toast } from 'react-toastify';
 
 const useGetConversation = () => {
  
@@ -23,6 +25,7 @@ const useGetConversation = () => {
 
         }
         catch (error) {
+            
             toast.error("Error fetching conversations");
             console.error("Error fetching conversations", error);
     }
